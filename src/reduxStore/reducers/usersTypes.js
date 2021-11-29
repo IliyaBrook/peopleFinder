@@ -1,0 +1,2 @@
+export const LOAD_USERS_FROM_API = 'LOAD_USERS_FROM_API'
+export const USERS_LOADING = 'USERS_LOADING'
