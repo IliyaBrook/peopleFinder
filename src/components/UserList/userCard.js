@@ -3,15 +3,29 @@ import * as S from "./style";
 import Text from "../Text";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeFavoriteUsersAction, setFavoriteUsersAction
+} from "../../reduxStore/reducers/actions";
 
 const UserCard = ({ user, index }) => {
+  const dispatch = useDispatch()
+  const favoriteUsers = useSelector(state => state.reducer.favoriteUsers)
+  const findFavorite = !!favoriteUsers.find(elem => elem?.login.uuid === user?.login.uuid)
   const [hoveredUserId, setHoveredUserId] = useState();
+
   const handleMouseEnter = (index) => {
     setHoveredUserId(index);
   };
   const handleMouseLeave = () => {
     setHoveredUserId();
   };
+
+  const handleFavoriteUser = () => {
+    return findFavorite ? dispatch(removeFavoriteUsersAction(user)) :
+      dispatch(setFavoriteUsersAction(user))
+  }
+
   return (
     <S.User
       key={index}
@@ -31,7 +45,11 @@ const UserCard = ({ user, index }) => {
           {user?.location.city} {user?.location.country}
         </Text>
       </S.UserInfo>
-      <S.IconButtonWrapper isVisible={index === hoveredUserId}>
+      <S.IconButtonWrapper
+        isVisible={
+          index === hoveredUserId || findFavorite
+        }
+        onClick={handleFavoriteUser}>
         <IconButton>
           <FavoriteIcon color="error" />
         </IconButton>
