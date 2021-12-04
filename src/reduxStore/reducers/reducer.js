@@ -1,10 +1,10 @@
 import React from "react";
 import {
   FAVORITE_USERS_LOADING,
-  GET_ALL_FAVORITE_USERS,
+  GET_ALL_FAVORITE_USERS, SET_USERS_WHEN_SCROLL_END,
   LOAD_USERS_FROM_API,
   REMOVE_FAVORITE_USER,
-  SET_FAVORITE_USER, SET_PATH,
+  SET_FAVORITE_USER,
   USERS_LOADING
 } from "./usersTypes";
 
@@ -18,7 +18,7 @@ const reducerInit = {
 export const reducer = (state = reducerInit, action ) => {
   switch (action.type) {
     case LOAD_USERS_FROM_API:
-      return {...state, users: [...action.users]}
+      return {...state, users: [...new Set([...action.users])]}
     case USERS_LOADING:
       return {...state, usersLoading: action.loading}
     case FAVORITE_USERS_LOADING:
@@ -31,6 +31,9 @@ export const reducer = (state = reducerInit, action ) => {
       return {...state, favoriteUsers: filteredState}
     case GET_ALL_FAVORITE_USERS:
       return {...state, favoriteUsers: [...action.payload]}
+    case SET_USERS_WHEN_SCROLL_END:
+      const newUsers = [...state.users,...action.payload]
+      return {...state,users: [...new Set([...newUsers])]}
     default:
       return state
   }

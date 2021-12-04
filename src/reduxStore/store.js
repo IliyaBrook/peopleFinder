@@ -14,8 +14,7 @@ const saga = createSagaMiddleware();
 export default configureStore({
   reducer: {
     reducer,
-    form:formReducer,
-
+    form:formReducer
   },
   middleware: [saga, thunk, routerBrowserMiddleware],
   devTools: true

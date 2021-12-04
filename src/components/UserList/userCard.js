@@ -8,7 +8,7 @@ import {
   removeFavoriteUsersAction, setFavoriteUsersAction
 } from "../../reduxStore/reducers/actions";
 
-const UserCard = ({ user, index }) => {
+const UserCard = ({ user, index, elemRef}) => {
   const dispatch = useDispatch()
   const favoriteUsers = useSelector(state => state.reducer.favoriteUsers)
   const findFavorite = !!favoriteUsers.find(elem => elem?.login.uuid === user?.login.uuid)
@@ -31,6 +31,7 @@ const UserCard = ({ user, index }) => {
       key={index}
       onMouseEnter={() => handleMouseEnter(index)}
       onMouseLeave={handleMouseLeave}
+      ref={elemRef}
     >
       <S.UserPicture src={user?.picture.large} alt="" />
       <S.UserInfo>

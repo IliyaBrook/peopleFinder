@@ -1,12 +1,11 @@
 import {
-  takeEvery, take, call,
-  put, delay, all, select,
-  takeLatest
+  takeEvery, call, put, all, takeLatest
 } from "redux-saga/effects";
 import {
   FAVORITE_USERS_LOADING,
   GET_ALL_FAVORITE_USERS,
-  LOAD_USERS_FROM_API,
+  HOME_PAGE_SCROLL_END,
+  LOAD_USERS_FROM_API, SET_USERS_WHEN_SCROLL_END,
   USERS_LOADING
 } from "../reduxStore/reducers/usersTypes";
 import axios from "axios";
@@ -14,7 +13,8 @@ import axios from "axios";
 export function* sagaWatcher() {
   yield all([
     call(getUsersWorker),
-    call(usersLoadedWatcher)
+    takeLatest(USERS_LOADING, favoriteUsersWorker),
+    takeEvery(HOME_PAGE_SCROLL_END, fetchNewUsersScrolling)
   ])
 }
 
@@ -30,10 +30,6 @@ function* fetchUsersWorker() {
   return response.data.results
 }
 
-function* usersLoadedWatcher() {
-  yield takeLatest(USERS_LOADING, favoriteUsersWorker)
-}
-
 function* favoriteUsersWorker(isUsersLoading) {
   if (!isUsersLoading.loading) {
     yield put({type:FAVORITE_USERS_LOADING,loading:true})
@@ -43,4 +39,10 @@ function* favoriteUsersWorker(isUsersLoading) {
     }
     yield put({type:FAVORITE_USERS_LOADING,loading:false})
   }
+}
+
+function* fetchNewUsersScrolling() {
+  const res = yield call(fetchUsersWorker)
+  yield put({type:SET_USERS_WHEN_SCROLL_END,payload:res})
+  yield put({type:USERS_LOADING,loading:false})
 }
