@@ -2,7 +2,7 @@ import UserCard from "../components/UserList/userCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getFormValues } from "redux-form";
 import { useCallback, useRef } from "react";
-import { HOME_PAGE_SCROLL_END } from "../reduxStore/reducers/usersTypes";
+import { HOME_PAGE_SCROLL_END } from "../reduxStore/reducers/users/usersReducerTypes";
 
 export const RenderUsers = ({ users }) => {
   const dispatch = useDispatch()

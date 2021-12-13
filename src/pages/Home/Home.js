@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Text from "components/Text";
 import UserList from "components/UserList";
 import * as S from "./style";
+
 
 const Home = () => {
   return (

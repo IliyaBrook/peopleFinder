@@ -8,7 +8,6 @@ export const CheckboxReduxForm = reduxForm({
 })(CheckBoxFilterComponent);
 
 
-
 export let SearchUsersInput = reduxForm({
   form: "searchUsersInput"
 })(SearchUsersInputComponent);

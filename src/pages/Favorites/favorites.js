@@ -10,7 +10,7 @@ import {SpinnerWrapper} from "../../components/UserList/style";
 
 
 export const Favorites = () => {
-  const { favoriteUsers, usersLoading } = useSelector(state => state.reducer);
+  const { favoriteUsers, usersLoading } = useSelector(state => state.usersReducer);
 
   const ShowSpinner = () => usersLoading ?
     <SpinnerWrapper>

@@ -1,0 +1,4 @@
+{
+  "port": "4000",
+  "mongoServ": "mongodb+srv://pplfinder:pplfinder12345678@cluster0.g4rqa.mongodb.net/peopleFinder?retryWrites=true&w=majority"
+}

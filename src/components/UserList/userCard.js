@@ -6,11 +6,11 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeFavoriteUsersAction, setFavoriteUsersAction
-} from "../../reduxStore/reducers/actions";
+} from "../../reduxStore/reducers/users/usersReducerActions";
 
 const UserCard = ({ user, index, elemRef}) => {
   const dispatch = useDispatch()
-  const favoriteUsers = useSelector(state => state.reducer.favoriteUsers)
+  const favoriteUsers = useSelector(state => state.usersReducer.favoriteUsers)
   const findFavorite = !!favoriteUsers.find(elem => elem?.login.uuid === user?.login.uuid)
   const [hoveredUserId, setHoveredUserId] = useState();
 

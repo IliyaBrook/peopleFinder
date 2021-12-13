@@ -6,7 +6,7 @@ import {
   REMOVE_FAVORITE_USER,
   SET_FAVORITE_USER,
   USERS_LOADING
-} from "./usersTypes";
+} from "./usersReducerTypes";
 
 const reducerInit = {
   usersLoading:false,
@@ -15,7 +15,7 @@ const reducerInit = {
   favoriteUsers:[],
   path:''
 }
-export const reducer = (state = reducerInit, action ) => {
+export const usersReducer = (state = reducerInit, action ) => {
   switch (action.type) {
     case LOAD_USERS_FROM_API:
       return {...state, users: [...new Set([...action.users])]}

@@ -1,4 +1,4 @@
-import { REMOVE_FAVORITE_USER, SET_FAVORITE_USER } from "./usersTypes";
+import { REMOVE_FAVORITE_USER, SET_FAVORITE_USER } from "./usersReducerTypes";
 
 export const setFavoriteUsersAction = (user) => {
   if (localStorage.getItem('favoriteUsers')) {

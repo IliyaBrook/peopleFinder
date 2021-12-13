@@ -45,6 +45,11 @@ export const CheckBoxFilterComponent = (props) => {
         type="checkbox" label="Canada"
         component={renderCheckbox}
       />
+      <Field
+        name="Norway"
+        type="checkbox" label="Norway"
+        component={renderCheckbox}
+      />
     </>
   );
 };

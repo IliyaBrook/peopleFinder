@@ -6,12 +6,12 @@ import { RenderUsers } from "../../hooks&functions/renderUsers";
 
 
 const UserList = () => {
-  const { users, usersLoading } = useSelector(state => state.reducer);
+  const { users, usersLoading } = useSelector(state => state.usersReducer);
 
   return (
     <S.UserList>
       <S.Filters>
-        <CheckboxReduxForm />
+        <CheckboxReduxForm/>
       </S.Filters>
       <SearchUsersInput />
       <S.List>
